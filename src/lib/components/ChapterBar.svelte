@@ -54,6 +54,9 @@
 		text-transform: uppercase;
 		color: var(--ink-2);
 		cursor: pointer;
+		transition:
+			color 0.5s ease,
+			border-color 0.5s ease;
 	}
 
 	.chapter.active {

@@ -17,8 +17,11 @@
 	}
 
 	.transition-block.shifted {
-		background: var(--ink);
-		color: var(--paper);
+		background: var(--panel-bg);
+		color: var(--panel-text);
+		box-shadow:
+			0 26px 50px -26px rgba(4, 8, 14, 0.7),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
 	}
 
 	.transition-block.shifted::before {

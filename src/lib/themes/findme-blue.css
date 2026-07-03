@@ -4,6 +4,11 @@
  * import. Components never hardcode colors or fonts, they only read
  * these variables, so a second story can ship a second theme file
  * without touching a single component.
+ *
+ * The act-dark modifier remaps the same variables for the story's
+ * dark act (the Engine chapter). The engine component applies and
+ * removes the class; every component adapts automatically because
+ * they only ever read the variables.
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -25,8 +30,19 @@
 	--flag: #9a6a1c;
 	--flag-bg: #f2ecdd;
 
-	/* Used only on dark surfaces, the transition beat and the deep
-	   panel side of any reveal-pair styling. */
+	/* Glass surfaces */
+	--glass-bg: rgba(251, 252, 254, 0.55);
+	--glass-border: rgba(255, 255, 255, 0.7);
+	--glass-inset: rgba(255, 255, 255, 0.85);
+
+	/* Dark ink panels (transition beats, table headers) */
+	--panel-bg: linear-gradient(160deg, #26313f, #1a2430);
+	--panel-text: #eef1f5;
+
+	/* Grain dot color */
+	--grain-dot: rgba(28, 26, 23, 0.05);
+
+	/* Used only on dark surfaces */
 	--on-dark-highlight: #7fb4d8;
 	--on-dark-glow: rgba(36, 96, 132, 0.42);
 
@@ -37,4 +53,29 @@
 	background: var(--paper);
 	color: var(--ink);
 	font-family: var(--font-body);
+}
+
+/* The dark act. Ink and paper trade places, the accent lifts to its
+ * on-dark register, glass becomes smoked glass, and panels go deeper
+ * than the stage so they still read as a layer beneath. */
+.theme-findme-blue.act-dark {
+	--ink: #eef1f5;
+	--ink-2: #c6cfd9;
+	--ink-3: #93a0ae;
+	--paper: #10161f;
+	--paper-2: #1a2430;
+	--card: #1c2733;
+	--line: #303d4c;
+
+	--accent: #7fb4d8;
+	--accent-deep: #a8cbe6;
+
+	--glass-bg: rgba(255, 255, 255, 0.06);
+	--glass-border: rgba(255, 255, 255, 0.14);
+	--glass-inset: rgba(255, 255, 255, 0.1);
+
+	--panel-bg: linear-gradient(160deg, #0b1119, #060a10);
+	--panel-text: #eef1f5;
+
+	--grain-dot: rgba(255, 255, 255, 0.045);
 }

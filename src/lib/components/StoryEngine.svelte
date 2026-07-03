@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { fade } from 'svelte/transition';
+	import { fade, fly, slide } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import type { Story } from '$lib/content/types';
 	import BlockRenderer from './BlockRenderer.svelte';
 	import ChapterBar from './ChapterBar.svelte';
@@ -14,6 +15,9 @@
 	let currentBeatIndex = $state(1);
 	let deeperExpanded = $state(false);
 	let reducedMotion = $state(false);
+	// +1 when moving forward, -1 when going back, so beats enter from
+	// the side they narratively come from.
+	let direction = $state(1);
 
 	let currentBeat = $derived(story.beats.find((b) => b.index === currentBeatIndex)!);
 	let revealBeatIndex = $derived(
@@ -21,6 +25,20 @@
 	);
 	let chromeVisible = $derived(currentBeatIndex >= revealBeatIndex);
 	let progress = $derived((currentBeatIndex / story.beats.length) * 100);
+
+	// The act drives the stage's whole mood: the Engine act goes dark,
+	// the cold open moves slower and quieter, the close gets its
+	// finale glow. Everything else follows from theme variables.
+	let actClass = $derived(
+		currentBeat.act === 'engine'
+			? 'act-dark'
+			: currentBeat.act === 'cold-open'
+				? 'act-cold'
+				: currentBeat.act === 'close'
+					? 'act-close'
+					: ''
+	);
+	let fadeDuration = $derived(reducedMotion ? 0 : currentBeat.act === 'cold-open' ? 520 : 240);
 
 	$effect(() => {
 		if (!browser) return;
@@ -35,6 +53,7 @@
 
 	function advance() {
 		if (currentBeatIndex < story.beats.length) {
+			direction = 1;
 			currentBeatIndex += 1;
 			deeperExpanded = false;
 		}
@@ -42,12 +61,14 @@
 
 	function goBack() {
 		if (currentBeatIndex > 1) {
+			direction = -1;
 			currentBeatIndex -= 1;
 			deeperExpanded = false;
 		}
 	}
 
 	function jumpTo(beatIndex: number) {
+		direction = beatIndex >= currentBeatIndex ? 1 : -1;
 		currentBeatIndex = beatIndex;
 		deeperExpanded = false;
 	}
@@ -79,10 +100,11 @@
 
 <svelte:window onkeydown={handleWindowKeydown} />
 
-<div class="engine theme-{story.theme}">
+<div class="engine theme-{story.theme} {actClass}">
 	<div class="grain" aria-hidden="true"></div>
 	<div class="glow glow-a" aria-hidden="true"></div>
 	<div class="glow glow-b" aria-hidden="true"></div>
+	<div class="glow glow-c" aria-hidden="true"></div>
 
 	<div class="progress-track" aria-hidden="true">
 		<div class="progress-fill" style="width: {progress}%"></div>
@@ -108,13 +130,34 @@
 
 	<div class="stage" role="button" tabindex="0" onclick={advance} onkeydown={handleStageKeydown}>
 		{#key currentBeatIndex}
-			<div class="beat" in:fade={{ duration: reducedMotion ? 0 : 220 }}>
+			<div
+				class="beat"
+				in:fly={{ x: direction * 44, duration: fadeDuration, easing: cubicOut }}
+			>
 				<BlockRenderer block={currentBeat.primary} />
+
+				{#if currentBeat.support}
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
+					<div
+						class="support"
+						onclick={(event) => event.stopPropagation()}
+						in:fly|global={{
+							y: 18,
+							duration: fadeDuration,
+							delay: reducedMotion ? 0 : 170,
+							easing: cubicOut
+						}}
+					>
+						<BlockRenderer block={currentBeat.support} />
+					</div>
+				{/if}
 
 				{#if currentBeat.deeper}
 					<button
 						type="button"
 						class="go-deeper"
+						in:fade|global={{ duration: fadeDuration, delay: reducedMotion ? 0 : 300 }}
 						onclick={(event) => {
 							event.stopPropagation();
 							toggleDeeper();
@@ -125,7 +168,13 @@
 				{/if}
 
 				{#if deeperExpanded && currentBeat.deeper}
-					<div class="deeper-content">
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
+					<div
+						class="deeper-content"
+						onclick={(event) => event.stopPropagation()}
+						transition:slide={{ duration: reducedMotion ? 0 : 340, easing: cubicOut }}
+					>
 						{#each currentBeat.deeper as block}
 							<BlockRenderer {block} />
 						{/each}
@@ -145,11 +194,12 @@
 <style>
 	.engine {
 		position: relative;
-		min-height: 100dvh;
+		height: 100dvh;
 		display: flex;
 		flex-direction: column;
 		padding: 0 28px;
 		overflow: hidden;
+		transition: background-color 0.8s ease;
 	}
 
 	/* The same quiet paper texture as the discovery documents, so the
@@ -162,7 +212,7 @@
 		opacity: 0.5;
 		background-image: radial-gradient(
 			circle at 1px 1px,
-			rgba(28, 26, 23, 0.05) 1px,
+			var(--grain-dot, rgba(28, 26, 23, 0.05)) 1px,
 			transparent 0
 		);
 		background-size: 4px 4px;
@@ -212,6 +262,7 @@
 		font-size: 0.85rem;
 		color: var(--ink-2);
 		text-transform: uppercase;
+		transition: color 0.6s ease;
 	}
 
 	.brandmark .dot {
@@ -280,13 +331,44 @@
 		background: radial-gradient(circle, rgba(12, 60, 96, 0.1), transparent 70%);
 	}
 
+	/* Finale glow: dormant through the whole story, rises beneath the
+	   closing beats. */
+	.glow-c {
+		bottom: -280px;
+		left: 50%;
+		width: 780px;
+		height: 780px;
+		margin-left: -390px;
+		background: radial-gradient(circle, rgba(36, 96, 132, 0.18), transparent 70%);
+		opacity: 0;
+		transition: opacity 1.4s ease;
+	}
+
+	.act-close .glow-c {
+		opacity: 1;
+	}
+
+	.glow {
+		transition: transform 1.2s ease;
+	}
+
+	.act-dark .glow-a,
+	.act-dark .glow-b {
+		transform: scale(1.25);
+	}
+
+	.act-cold .grain {
+		opacity: 0.3;
+	}
+
 	.stage {
 		position: relative;
 		z-index: 1;
 		flex: 1;
+		min-height: 0;
 		display: flex;
-		align-items: center;
 		justify-content: center;
+		overflow-y: auto;
 		padding: 40px 0 52px;
 		cursor: pointer;
 		outline: none;
@@ -300,9 +382,14 @@
 
 	.beat {
 		max-width: 38rem;
+		margin: auto 0;
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+	}
+
+	.support {
+		padding-top: 6px;
 	}
 
 	.go-deeper {
@@ -326,9 +413,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 18px;
-		padding-top: 4px;
-		max-height: 46dvh;
-		overflow-y: auto;
+		padding: 4px 10px 40px;
 		--text-block-font: var(--font-body);
 		--text-block-size: 1.05rem;
 		--text-block-line-height: 1.7;

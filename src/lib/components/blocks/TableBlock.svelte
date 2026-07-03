@@ -31,12 +31,12 @@
 	.table-card {
 		border-radius: 15px;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.7);
-		background: rgba(251, 252, 254, 0.6);
+		border: 1px solid var(--glass-border);
+		background: var(--glass-bg);
 		-webkit-backdrop-filter: blur(14px) saturate(1.15);
 		backdrop-filter: blur(14px) saturate(1.15);
 		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.85),
+			inset 0 1px 0 var(--glass-inset),
 			0 18px 34px -20px rgba(12, 60, 96, 0.4),
 			0 4px 10px -6px rgba(26, 36, 48, 0.15);
 	}
@@ -49,8 +49,8 @@
 	}
 
 	thead th {
-		background: linear-gradient(160deg, #26313f, var(--ink));
-		color: var(--paper);
+		background: var(--panel-bg);
+		color: var(--panel-text);
 		font-weight: 600;
 		font-size: 0.78rem;
 		letter-spacing: 0.04em;

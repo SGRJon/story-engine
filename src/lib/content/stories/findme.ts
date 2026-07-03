@@ -113,6 +113,7 @@ export const findme: Story = {
 			primary: {
 				type: 'phoneMock',
 				label: 'Live preview',
+				typing: true,
 				lines: [
 					"As the parent types, the helper's page updates in real time.",
 					'Trust is built by showing, not promising.'
@@ -251,14 +252,18 @@ export const findme: Story = {
 			index: 19,
 			act: 'product',
 			primary: {
+				type: 'text',
+				body: 'Wearables are an entire category with multiple product lines.'
+			},
+			support: {
 				type: 'grid',
 				items: [
-					{ label: 'Wristband' },
-					{ label: 'Shoe tag' },
-					{ label: 'Zipper pull' },
-					{ label: 'Pendant' },
-					{ label: 'Clothing tag' },
-					{ label: 'Key fob' }
+					{ label: 'Wristband', icon: 'wristband' },
+					{ label: 'Shoe tag', icon: 'shoe-tag' },
+					{ label: 'Zipper pull', icon: 'zipper-pull' },
+					{ label: 'Pendant', icon: 'pendant' },
+					{ label: 'Clothing tag', icon: 'clothing-tag' },
+					{ label: 'Key fob', icon: 'key-fob' }
 				]
 			}
 		},

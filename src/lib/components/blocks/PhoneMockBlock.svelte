@@ -16,6 +16,53 @@
 
 	let messages = $derived(block.lines.filter((l) => !isButton(l)));
 	let buttons = $derived(block.lines.filter(isButton).map(buttonLabel));
+
+	// Typing mode: message lines write themselves out one character
+	// at a time, line by line, with a caret on the active line. The
+	// live-preview beat uses this to demonstrate the page updating
+	// while you watch. Reduced motion renders everything instantly.
+	let typedCounts = $state<number[]>([]);
+
+	let activeLine = $derived(
+		block.typing ? typedCounts.findIndex((c, i) => c < (messages[i]?.length ?? 0)) : -1
+	);
+
+	function visibleText(i: number) {
+		if (!block.typing) return messages[i];
+		return messages[i].slice(0, typedCounts[i] ?? messages[i].length);
+	}
+
+	$effect(() => {
+		if (!block.typing) return;
+		const lines = messages;
+		const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+		if (mql.matches) {
+			typedCounts = lines.map((l) => l.length);
+			return;
+		}
+		const counts = lines.map(() => 0);
+		typedCounts = [...counts];
+		let line = 0;
+		let pause = 16;
+		const id = setInterval(() => {
+			if (pause > 0) {
+				pause -= 1;
+				return;
+			}
+			if (line >= lines.length) {
+				clearInterval(id);
+				return;
+			}
+			if (counts[line] < lines[line].length) {
+				counts[line] += 1;
+				typedCounts = [...counts];
+			} else {
+				line += 1;
+				pause = 12;
+			}
+		}, 28);
+		return () => clearInterval(id);
+	});
 </script>
 
 <div class="phone-mock">
@@ -27,7 +74,9 @@
 			<div class="phone-notch"></div>
 			<div class="mock-messages">
 				{#each messages as line, i}
-					<p class="mock-line" class:lead={i === 0}>{line}</p>
+					<p class="mock-line" class:lead={i === 0}>
+						{visibleText(i)}{#if i === activeLine}<span class="caret"></span>{/if}
+					</p>
 				{/each}
 			</div>
 			{#if buttons.length > 0}
@@ -144,6 +193,26 @@
 		font-weight: 500;
 		line-height: 1.35;
 		color: var(--ink);
+	}
+
+	.caret {
+		display: inline-block;
+		width: 2px;
+		height: 1em;
+		margin-left: 2px;
+		vertical-align: text-bottom;
+		background: var(--accent);
+		animation: caret-blink 0.9s steps(1) infinite;
+	}
+
+	@keyframes caret-blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
 	}
 
 	.mock-actions {
