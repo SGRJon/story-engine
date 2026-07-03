@@ -1,0 +1,40 @@
+/* CREATE: src/lib/themes/findme-blue.css
+ *
+ * A theme is a CSS class carrying a variable set plus its own font
+ * import. Components never hardcode colors or fonts, they only read
+ * these variables, so a second story can ship a second theme file
+ * without touching a single component.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+.theme-findme-blue {
+	--ink: #1a2430;
+	--ink-2: #3d4a58;
+	--ink-3: #6b7887;
+	--paper: #eef1f5;
+	--paper-2: #e3e8ee;
+	--card: #fbfcfe;
+	--line: #d3dae3;
+
+	--accent: #246084;
+	--accent-deep: #0c3c60;
+
+	--safe: #2f6b4f;
+	--safe-bg: #e2ede8;
+	--flag: #9a6a1c;
+	--flag-bg: #f2ecdd;
+
+	/* Used only on dark surfaces, the transition beat and the deep
+	   panel side of any reveal-pair styling. */
+	--on-dark-highlight: #7fb4d8;
+	--on-dark-glow: rgba(36, 96, 132, 0.42);
+
+	--font-display: 'Fraunces', serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', monospace;
+
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-body);
+}
