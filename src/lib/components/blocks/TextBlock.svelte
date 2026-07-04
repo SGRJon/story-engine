@@ -57,6 +57,20 @@
 		line-height: var(--text-block-line-height, 1.35);
 	}
 
+	@media (max-width: 680px) {
+		.scale-xl {
+			font-size: var(--text-block-size, clamp(2rem, 8.5vw, 2.5rem));
+		}
+
+		.scale-lg {
+			font-size: var(--text-block-size, clamp(1.65rem, 7vw, 2.1rem));
+		}
+
+		.scale-md {
+			font-size: var(--text-block-size, clamp(1.3rem, 5.5vw, 1.7rem));
+		}
+	}
+
 	.text-block.emphasis {
 		font-weight: 600;
 		color: var(--accent-deep);

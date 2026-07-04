@@ -446,6 +446,56 @@
 		}
 	}
 
+	@media (max-width: 680px) {
+		.engine {
+			padding: 0 20px;
+		}
+
+		/* The three-column desktop grid cannot fit a phone: stack the
+		   brandmark above the chapter bar, both centered. */
+		.chrome {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+			padding-top: 16px;
+		}
+
+		/* The chevron moves to the bottom-left thumb zone as a glass
+		   chip, clear of content, sized as a proper touch target. */
+		.back-chevron {
+			top: auto;
+			bottom: calc(22px + env(safe-area-inset-bottom));
+			left: 16px;
+			transform: none;
+			width: 46px;
+			height: 46px;
+			padding: 0;
+			display: grid;
+			place-items: center;
+			background: var(--glass-bg);
+			-webkit-backdrop-filter: blur(12px) saturate(1.15);
+			backdrop-filter: blur(12px) saturate(1.15);
+			border: 1px solid var(--glass-border);
+			border-radius: 50%;
+			box-shadow:
+				inset 0 1px 0 var(--glass-inset),
+				0 10px 22px -12px rgba(12, 60, 96, 0.45);
+			font-size: 1.5rem;
+			color: var(--ink);
+		}
+
+		/* Bottom padding reserves the chevron's zone and Safari's
+		   dynamic bar so content never hides beneath either. */
+		.stage {
+			padding: 20px 0 calc(88px + env(safe-area-inset-bottom));
+		}
+
+		.tap-hint {
+			bottom: calc(28px + env(safe-area-inset-bottom));
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.tap-hint {
 			animation: none;

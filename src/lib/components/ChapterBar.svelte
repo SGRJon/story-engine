@@ -68,4 +68,16 @@
 	.chapter:hover {
 		color: var(--accent);
 	}
+
+	@media (max-width: 680px) {
+		.chapter-bar {
+			gap: 22px;
+			padding: 4px 0 10px;
+		}
+
+		.chapter {
+			font-size: 0.8rem;
+			letter-spacing: 0.06em;
+		}
+	}
 </style>
