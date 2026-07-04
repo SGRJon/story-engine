@@ -69,6 +69,12 @@
 		color: var(--accent);
 	}
 
+	.chapter:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+		border-radius: 3px;
+	}
+
 	@media (max-width: 680px) {
 		.chapter-bar {
 			gap: 22px;

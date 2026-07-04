@@ -94,6 +94,8 @@
 		} else if (event.key === 'ArrowLeft') {
 			event.preventDefault();
 			goBack();
+		} else if (event.key === 'Escape' && deeperExpanded) {
+			deeperExpanded = false;
 		}
 	}
 </script>
@@ -163,6 +165,9 @@
 							toggleDeeper();
 						}}
 					>
+						<span class="deeper-indicator" class:open={deeperExpanded} aria-hidden="true"
+							>+</span
+						>
 						{deeperExpanded ? 'Show less' : 'Go deeper'}
 					</button>
 				{/if}
@@ -394,19 +399,52 @@
 
 	.go-deeper {
 		align-self: flex-start;
-		background: none;
-		border: 1px solid var(--line);
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		background: var(--glass-bg);
+		-webkit-backdrop-filter: blur(12px) saturate(1.15);
+		backdrop-filter: blur(12px) saturate(1.15);
+		border: 1px solid var(--glass-border);
 		border-radius: 20px;
-		padding: 8px 18px;
+		padding: 9px 18px;
 		font-family: var(--font-mono);
 		font-size: 0.78rem;
 		letter-spacing: 0.04em;
 		color: var(--accent-deep);
 		cursor: pointer;
+		box-shadow:
+			inset 0 1px 0 var(--glass-inset),
+			0 10px 20px -14px rgba(12, 60, 96, 0.4);
+		transition: border-color 0.25s ease;
 	}
 
 	.go-deeper:hover {
 		border-color: var(--accent);
+	}
+
+	.go-deeper:focus-visible,
+	.back-chevron:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	.deeper-indicator {
+		display: inline-block;
+		font-size: 0.95rem;
+		line-height: 1;
+		color: var(--accent);
+		transition: transform 0.3s ease;
+	}
+
+	.deeper-indicator.open {
+		transform: rotate(45deg);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.deeper-indicator {
+			transition: none;
+		}
 	}
 
 	.deeper-content {
