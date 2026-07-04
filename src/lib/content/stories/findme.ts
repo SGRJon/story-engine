@@ -9,6 +9,7 @@ export const findme: Story = {
 	slug: 'findme',
 	title: 'FindMe',
 	theme: 'findme-blue',
+	favicon: '/favicons/findme.svg',
 	passphraseGate: true,
 	acts: [
 		{ id: 'experience', label: 'Experience', startBeat: 4 },

@@ -7,6 +7,9 @@
 <svelte:head>
 	<title>FindMe</title>
 	<meta name="robots" content="noindex, nofollow" />
+	{#if findme.favicon}
+		<link rel="icon" type="image/svg+xml" href={findme.favicon} />
+	{/if}
 </svelte:head>
 
 <StoryEngine story={findme} />

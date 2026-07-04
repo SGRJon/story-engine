@@ -30,6 +30,10 @@ export interface Story {
 	slug: string;
 	title: string;
 	theme: string;
+	// Path to this story's favicon under /static, e.g.
+	// '/favicons/findme.svg'. Each story route declares it in its
+	// page head, overriding the site default.
+	favicon?: string;
 	passphraseGate: boolean;
 	acts: StoryAct[];
 	beats: Beat[];
