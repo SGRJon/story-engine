@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+<title>FindMe · How We Would Work Together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2430;
+    --ink-2: #3d4a58;
+    --ink-3: #6b7887;
+    --paper: #eef1f5;
+    --paper-2: #e3e8ee;
+    --card: #fbfcfe;
+    --line: #d3dae3;
+    --accent: #246084;
+    --accent-deep: #0c3c60;
+    --safe: #2f6b4f;
+    --safe-bg: #e2ede8;
+    --shadow: 0 1px 0 rgba(28,26,23,0.04), 0 12px 32px -16px rgba(28,26,23,0.28);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    opacity: 0.5;
+    background-image: radial-gradient(circle at 1px 1px, rgba(28,26,23,0.05) 1px, transparent 0);
+    background-size: 4px 4px;
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+  header.masthead { padding: 64px 0 0; }
+  .brandrow {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 22px; border-bottom: 1px solid var(--line);
+  }
+  .brandmark {
+    display: flex; align-items: center; gap: 11px;
+    font-weight: 600; letter-spacing: 0.02em;
+    font-size: 0.82rem; color: var(--ink-2); text-transform: uppercase;
+  }
+  .brandmark .dot {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: linear-gradient(150deg, var(--accent), var(--accent-deep));
+    display: grid; place-items: center; flex-shrink: 0;
+  }
+  .brandmark .dot span { width: 7px; height: 7px; background: var(--paper); border-radius: 50%; }
+  .doctag {
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 500;
+  }
+
+  .hero { padding: 52px 0 56px; }
+  .eyebrow {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-deep); margin-bottom: 22px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(2.4rem, 5.8vw, 3.9rem);
+    line-height: 1.05; letter-spacing: -0.015em; margin-bottom: 26px;
+  }
+  h1 em { font-style: italic; font-weight: 500; color: var(--accent-deep); }
+  .standfirst {
+    font-size: clamp(1.04rem, 2.2vw, 1.26rem);
+    color: var(--ink-2); max-width: 41rem; line-height: 1.55;
+  }
+  .standfirst strong { color: var(--ink); font-weight: 600; }
+
+  .thesis {
+    margin: 4px 0 62px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 16px; padding: 38px 40px;
+    position: relative; overflow: hidden;
+  }
+  .thesis::before {
+    content: ""; position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(36,96,132,0.42), transparent 70%);
+  }
+  .thesis .k {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 1.44rem; line-height: 1.42; position: relative; color: #eaf1f7;
+  }
+  .thesis .k b { color: #7fb4d8; font-weight: 600; font-style: normal; }
+
+  section.step { padding: 16px 0 8px; }
+  .step-head {
+    display: flex; align-items: baseline; gap: 18px;
+    margin-bottom: 8px; padding-top: 42px; border-top: 1px solid var(--line);
+  }
+  .step-num {
+    font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 500;
+    color: var(--accent); line-height: 1; flex-shrink: 0;
+    font-variant-numeric: lining-nums;
+  }
+  .step-titles { flex: 1; }
+  .step-kicker {
+    font-size: 0.74rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px;
+  }
+  h2 {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: clamp(1.48rem, 3vw, 1.92rem); line-height: 1.14; letter-spacing: -0.01em;
+  }
+  .step-body { margin-top: 18px; }
+  .step-body p { color: var(--ink-2); margin-bottom: 16px; font-size: 1.02rem; }
+  .step-body p strong { color: var(--ink); font-weight: 600; }
+
+  /* promise cards */
+  .promises { display: grid; gap: 12px; margin: 26px 0 10px; }
+  .pr {
+    display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start;
+    padding: 20px 22px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+  }
+  .pr .marker {
+    font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600;
+    color: var(--accent); border: 1.5px solid var(--accent);
+    border-radius: 8px; padding: 4px 12px; white-space: nowrap;
+    font-variant-numeric: lining-nums;
+  }
+  .pr h4 {
+    font-size: 1.02rem; font-weight: 600; color: var(--ink);
+    margin-bottom: 5px; line-height: 1.3;
+  }
+  .pr p { font-size: 0.95rem; color: var(--ink-2); margin: 0; }
+
+  /* phase cards */
+  .phases { display: grid; gap: 14px; margin: 26px 0 10px; }
+  .phase {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 13px; padding: 24px 26px; box-shadow: var(--shadow);
+  }
+  .phase-top {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .phase-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--accent-deep);
+    border: 1.5px solid var(--accent); border-radius: 6px; padding: 3px 9px;
+  }
+  .phase .figures {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.86rem;
+    color: var(--ink); font-weight: 600;
+  }
+  .phase .figures .est { color: var(--ink-3); font-weight: 400; font-size: 0.78rem; }
+  .phase h4 {
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.26rem;
+    margin: 14px 0 9px; line-height: 1.25;
+  }
+  .phase p { font-size: 0.96rem; color: var(--ink-2); margin-bottom: 12px; }
+  .phase p:last-child { margin-bottom: 0; }
+  .phase ul { margin: 0; padding-left: 20px; }
+  .phase li { font-size: 0.93rem; color: var(--ink-2); margin-bottom: 6px; }
+
+  .tablecard {
+    margin: 22px 0 10px; border: 1px solid var(--line);
+    border-radius: 13px; overflow: hidden; box-shadow: var(--shadow);
+  }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; }
+  thead th {
+    background: var(--ink); color: var(--paper); text-align: left;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 13px 18px;
+  }
+  tbody td {
+    background: var(--card); padding: 13px 18px;
+    border-top: 1px solid var(--line); font-size: 0.94rem; color: var(--ink-2);
+  }
+  tbody td:first-child { color: var(--ink); font-weight: 600; }
+  tbody td.num { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--ink); }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0 8px; }
+  .panel {
+    border-radius: 13px; padding: 22px 24px;
+    border: 1px solid var(--line); background: var(--card); box-shadow: var(--shadow);
+  }
+  .panel .tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .panel.yours .tag { color: var(--safe); }
+  .panel.mine .tag { color: var(--accent-deep); }
+  .panel .tag::before { content: ""; width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+  .panel.yours .tag::before { background: var(--safe); transform: rotate(45deg); }
+  .panel.mine .tag::before { background: var(--accent); }
+  .panel p { font-size: 0.94rem; color: var(--ink-2); margin: 0; }
+  .panel p + p { margin-top: 10px; }
+  .panel strong { color: var(--ink); font-weight: 600; }
+  .panel ul { margin: 8px 0 0 0; padding-left: 19px; }
+  .panel li { font-size: 0.92rem; color: var(--ink-2); margin-bottom: 6px; }
+
+  .callout {
+    margin: 26px 0; padding: 22px 26px; border-radius: 12px;
+    background: var(--safe-bg); border: 1px solid #c5dbd0;
+  }
+  .callout .tag {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--safe); margin-bottom: 10px; display: block;
+  }
+  .callout p { font-size: 0.96rem; color: var(--ink-2); margin: 0; }
+  .callout p + p { margin-top: 10px; }
+  .callout strong { color: var(--ink); font-weight: 600; }
+
+  .closer {
+    margin: 58px 0 0; padding: 44px 42px;
+    background: linear-gradient(165deg, var(--paper-2), var(--paper));
+    border: 1px solid var(--line); border-radius: 18px;
+  }
+  .closer .eyebrow { color: var(--accent-deep); }
+  .closer p {
+    font-family: 'Fraunces', serif; font-size: clamp(1.18rem, 2.6vw, 1.52rem);
+    line-height: 1.44; color: var(--ink); font-weight: 400;
+  }
+  .closer p strong { color: var(--accent-deep); font-weight: 600; }
+
+  footer {
+    padding: 40px 0 60px; margin-top: 40px; border-top: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.78rem; color: var(--ink-3); flex-wrap: wrap; gap: 12px;
+  }
+  footer .brandmark { font-size: 0.74rem; }
+
+  footer .asof {
+    font-size: 0.74rem; color: var(--ink-3); text-align: right;
+    max-width: 30rem; line-height: 1.45;
+  }
+
+  @media print {
+    @page { size: Letter; margin: 0.55in 0.6in; }
+
+    html, body { background: #ffffff; }
+    body {
+      font-size: 10.5pt; line-height: 1.5;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    /* the fixed grain overlay tiles across every printed page */
+    .grain { display: none; }
+
+    .wrap { max-width: 100%; padding: 0; }
+
+    /* screen-sized type is far too large on paper */
+    h1 { font-size: 27pt; line-height: 1.08; margin-bottom: 16px; }
+    h2 { font-size: 15.5pt; }
+    .standfirst { font-size: 11.5pt; max-width: 100%; }
+    .thesis .k { font-size: 13pt; }
+    .closer p { font-size: 13pt; }
+    .phase h4 { font-size: 12.5pt; }
+    .opt h4, .pr h4 { font-size: 11pt; }
+
+    header.masthead { padding-top: 0; }
+    .hero { padding: 26px 0 30px; }
+    .thesis { margin-bottom: 30px; padding: 24px 26px; }
+    .step-head { padding-top: 24px; }
+    section.step { padding: 8px 0 4px; }
+    .closer { margin-top: 22px; padding: 22px 26px; }
+    .closer p { font-size: 12pt; }
+    footer { padding: 14px 0 0; margin-top: 18px; }
+    footer .asof { font-size: 8pt; }
+    .step-body p { margin-bottom: 11px; }
+    .promises, .phases { gap: 10px; }
+    .pr { padding: 14px 18px; }
+    .phase { padding: 18px 20px; }
+
+    /* never split a card, a table, or a heading from its body */
+    .pr, .phase, .panel, .callout, .tablecard, .thesis, .closer,
+    .step-head, tr, li { break-inside: avoid; page-break-inside: avoid; }
+    .step-head { break-after: avoid; page-break-after: avoid; }
+    h1, h2, h4 { break-after: avoid; page-break-after: avoid; }
+
+    /* let content flow; only protect cards from splitting */
+
+    /* shadows print as muddy grey bands */
+    .pr, .phase, .panel, .tablecard, .opt { box-shadow: none; }
+
+    /* keep the two column blocks side by side on paper */
+    .pair { grid-template-columns: 1fr 1fr; }
+
+    a { text-decoration: none; color: inherit; }
+  }
+
+  @media (max-width: 720px) {
+    .pair { grid-template-columns: 1fr; }
+    .step-head { flex-direction: column; gap: 6px; }
+    .thesis, .closer { padding: 30px 24px; }
+    .phase { padding: 22px 20px; }
+    .pr { grid-template-columns: 1fr; gap: 10px; }
+    .pr .marker { justify-self: start; }
+    thead th, tbody td { padding: 11px 13px; font-size: 0.88rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="brandrow">
+    <div class="brandmark"><span class="dot"><span></span></span> UpSkillPros</div>
+    <div class="doctag">Discovery Note · How We Would Work Together</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">FindMe · working name</div>
+  <h1>You shouldn't have to bet everything<br>on something <em>no one has bought yet</em>.</h1>
+  <p class="standfirst">You're starting a wearables company from scratch. The honest problem with a single large software quote isn't the number, it's that you'd be spending it before you know whether people buy the product. So the proposed approach is to build it the other way around: <strong>the smallest build that gets you selling, then the rest once you know there's a customer base for your specific product.</strong></p>
+</div>
+
+<div class="thesis">
+  <p class="k">Your first batch is more of a perimeter tester than a money maker. It's there to answer one question: <b>will people buy our product?</b> Everything after that is a decision you get to make once you know the answer.</p>
+</div>
+
+<!-- ============ 01 ============ -->
+<section class="step">
+  <div class="step-head">
+    <div class="step-num">01</div>
+    <div class="step-titles">
+      <div class="step-kicker">The part that matters most</div>
+      <h2>What you get, in plain terms</h2>
+    </div>
+  </div>
+  <div class="step-body">
+    <p>When founders say they want to own their product, what they usually mean is something closer to this: they don't want to be trapped, they don't want a competitor getting the same thing, and they don't want the whole company to depend on one person staying interested. Those are the right things to worry about. Here's how each one is answered.</p>
+
+    <div class="promises">
+      <div class="pr">
+        <div class="marker">01</div>
+        <div>
+          <h4>Nobody else gets this for child safety. Ever.</h4>
+          <p>Exclusive to FindMe in the business of finding and reuniting children. Not for a year, not while we're working together. Permanently. If a competitor came to me tomorrow with a bag of money, the answer would be no, and it would be in writing.</p>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="marker">02</div>
+        <div>
+          <h4>The accounts are in your name, not mine.</h4>
+          <p>The code, the database, and the hosting all live in accounts that belong to FindMe, billed to FindMe. I work inside them as an invited collaborator. That means there's nothing to hand over if we ever part ways, because none of it was ever mine to hold. You remove my access and bring in whoever you want, and the system doesn't so much as blink.</p>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="marker">03</div>
+        <div>
+          <h4>It can't be taken away from you.</h4>
+          <p>Permanent and irrevocable. Not a subscription to the software itself, not something that expires, not something I can pull if we have a disagreement. Once a phase is paid for, that phase is yours to use forever.</p>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="marker">04</div>
+        <div>
+          <h4>If I disappear, you're fine.</h4>
+          <p>Everything above survives me. If I get hit by a truck, retire, or move to Belize, FindMe keeps operating and you keep every right listed here. You aren't one person's health away from losing your company.</p>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="marker">05</div>
+        <div>
+          <h4>If you sell the company, it goes with you.</h4>
+          <p>All of it transfers to a buyer. You aren't building something that turns out to be unsellable because of a clause in a contract with your developer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="step">
+  <div class="step-head">
+    <div class="step-num">02</div>
+    <div class="step-titles">
+      <div class="step-kicker">The trade</div>
+      <h2>What I keep, and why it saves you money</h2>
+    </div>
+  </div>
+  <div class="step-body">
+    <p>Underneath FindMe there's a general piece of engineering: a way to put a permanent code on a physical object, let one person claim it, and control what a stranger sees when they scan it. That same foundation could just as easily be a luggage tag, a lost pet tag, or a tag on expensive equipment on a job site. <strong>None of those compete with you.</strong></p>
+    <p>So the arrangement is this. You get the finished FindMe product, your brand, your customers, your data, and permanent exclusivity in child safety. I keep the right to use the underlying engineering in areas that have nothing to do with children.</p>
+    <p>That isn't a technicality. It's the reason the number below is what it is. You're paying to build and own a product rather than to fund a foundation from scratch, and that saves you valuable startup capital.</p>
+
+    <div class="pair">
+      <div class="panel yours">
+        <span class="tag">Yours</span>
+        <ul>
+          <li>The FindMe brand, name, and identity</li>
+          <li>Every customer and every customer record</li>
+          <li>All of the data in the system</li>
+          <li>The complete source code, in your own accounts</li>
+          <li>Permanent exclusivity in child safety</li>
+          <li>The right to sell or transfer all of it</li>
+        </ul>
+      </div>
+      <div class="panel mine">
+        <span class="tag">Mine</span>
+        <ul>
+          <li>The general engineering underneath</li>
+          <li>The right to use it outside of the child safety space</li>
+          <li>Nothing that touches your customers, your data, or your market</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="tag">One condition, stated up front</span>
+      <p>Exclusivity is meant to protect an operating business, not to lock up a market forever. So it stays in place as long as FindMe is actually selling. <strong>If the company stops selling entirely for an agreed upon number of months, the exclusivity ends</strong> while everything else on this page keeps running.</p>
+      <p>This isn't a trapdoor and it isn't aimed at a slow year. It exists so that if FindMe winds down someday, the arrangement winds down with it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section class="step">
+  <div class="step-head">
+    <div class="step-num">03</div>
+    <div class="step-titles">
+      <div class="step-kicker">The work</div>
+      <h2>Three steps, each one signed on its own</h2>
+    </div>
+  </div>
+  <div class="step-body">
+    <p>You're never committing to the whole thing at once. Each step is agreed separately, and you decide whether to continue at the end of each one.</p>
+
+    <div class="phases">
+
+      <div class="phase">
+        <div class="phase-top">
+          <span class="phase-label">Step 1</span>
+          <span class="figures">$1,800</span>
+        </div>
+        <h4>The plan on paper</h4>
+        <p>Before anyone writes code or quotes a build, we agree in writing on exactly what's being built. Every screen, every rule, what happens in each situation, and just as importantly, what isn't included.</p>
+        <ul>
+          <li>Takes about a week and a couple of working sessions with both of you</li>
+          <li>You keep the document whether or not we continue</li>
+          <li>If you take it to a different developer, it still works as a specification</li>
+          <li>Nothing after this gets a firm price until this exists, because pricing a build from a conversation is how projects go wrong</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top">
+          <span class="phase-label">Step 2</span>
+          <span class="figures">$12,000 to $15,000 <span class="est">estimate, firmed up after Step 1</span></span>
+        </div>
+        <h4>Enough to sell your first hundred</h4>
+        <p>A real, working, sellable product. A parent buys a band, scans it, sets it up in about a minute, and manages it from their phone. A helper who finds a lost child scans it and sees exactly what that parent chose to share.</p>
+        <ul>
+          <li>The setup and claiming experience, start to finish</li>
+          <li>The page a helper sees, built to load fast on a weak signal</li>
+          <li>The parent's account, with the live preview so they can see what a stranger sees</li>
+          <li>Everything needed to get codes onto your first bands</li>
+          <li>I run the behind the scenes pieces by hand through your first three batches, which is why this step costs less</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top">
+          <span class="phase-label">Step 3</span>
+          <span class="figures">$7,000 to $9,000 <span class="est">estimate, quoted at Step 2, signed when you're ready</span></span>
+        </div>
+        <h4>The tools that get me out of your way</h4>
+        <p>You don't need this on day one, and there's no aggressive date attached to it. You need it when you're ordering batches often enough that me doing it by hand becomes the thing slowing you down. That turns the work I've been doing manually into buttons the two of you press yourselves.</p>
+        <p>Not only that, I don't want to build you a partial system that operates like scaffolding. We want to be proud of this system because it's built out and it removes friction and stress from your operations. This phase puts a very large and impressive bow on the experience of the customers, and you as well.</p>
+        <p><strong>By the time that's a real problem, you'll be deciding with actual numbers instead of guesses,</strong> and you'll know when the business justifies it.</p>
+        <ul>
+          <li>Order a new batch of codes and send the file to your manufacturer, without calling me</li>
+          <li>Check a returned batch before it goes on sale, so a dead band never reaches a parent</li>
+          <li>Switch off a lost band instantly</li>
+          <li>A family view organized by child rather than a long list, for parents with several kids</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <span class="tag">Why the foundation isn't the part being cut</span>
+      <p>Step 2 doesn't mean a cheap version now and a real version later. The parts that are hard to change once real families are using them, how the data is structured, how privacy is enforced, how ownership works, are all built correctly in Step 2. <strong>What Step 3 adds is convenience, not correctness.</strong> That's exactly why it's safe to wait on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section class="step">
+  <div class="step-head">
+    <div class="step-num">04</div>
+    <div class="step-titles">
+      <div class="step-kicker">Ongoing</div>
+      <h2>Keeping it running</h2>
+    </div>
+  </div>
+  <div class="step-body">
+    <p>Once it's live, a monthly spend ensures it's healthy: security updates, monitoring, backups, and me being reachable when something needs attention. It scales with the size of the business rather than sitting flat, because a hundred families and ten thousand families are genuinely different amounts of work.</p>
+
+    <div class="tablecard">
+      <table>
+        <thead>
+          <tr><th>Active bands in the field</th><th>Monthly</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Up to 500</td><td class="num">$250</td></tr>
+          <tr><td>501 to 2,500</td><td class="num">$450</td></tr>
+          <tr><td>2,501 to 10,000</td><td class="num">$750</td></tr>
+          <tr><td>Beyond 10,000</td><td class="num">We talk</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Two things worth being clear about. Hosting and database bills go straight to you from those providers, since the accounts are yours, so there's no markup and nothing passing through me. And <strong>this monthly isn't a payment plan for the build.</strong> The build is paid for at each step. This is only for keeping the running system healthy, and it can be stopped without affecting anything you've already paid for and own.</p>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section class="step">
+  <div class="step-head">
+    <div class="step-num">05</div>
+    <div class="step-titles">
+      <div class="step-kicker">Strongly recommended</div>
+      <h2>Get an attorney to look at this before you launch</h2>
+    </div>
+  </div>
+  <div class="step-body">
+    <p>The way this is designed already avoids the hardest part of children's privacy law. The child never touches the system and never types anything into it. The parent is the account holder, the parent decides what gets shared, and the only thing stored about a child is a label the parent chose to enter. That's a deliberate design decision, not a happy accident, and it takes most of the usual exposure off the table before you've sold anything.</p>
+    <p>What it doesn't do is make the question disappear. You'd still be a company holding customer data and selling a product that families rely on in a bad moment, and I'm not an attorney, so I'm not going to tell you where those lines fall. <strong>One review before launch is cheap next to finding out later,</strong> and I'd feel a lot better if you did it.</p>
+    <p>The same goes for the agreement between us. <strong>Have your own attorney read it.</strong> I'd rather you understood it completely than signed it quickly.</p>
+  </div>
+</section>
+
+<div class="closer">
+  <div class="eyebrow">Where this starts</div>
+  <p>The only thing to decide right now is Step 1. It's small, it's a week, and at the end of it you own a document that tells you exactly what you're building and what it costs. <strong>Everything after that's a decision you get to make with better information than you have today.</strong></p>
+</div>
+
+<footer>
+  <div class="brandmark"><span class="dot"><span></span></span> UpSkillPros</div>
+  <div class="asof">Prepared August 2026. Figures hold for 90 days from that date, and Steps 2 and 3 are firmed up once Step 1 is done.</div>
+</footer>
+
+</div>
+</body>
+</html>
