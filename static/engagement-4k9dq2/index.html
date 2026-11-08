@@ -249,6 +249,24 @@
     max-width: 30rem; line-height: 1.45;
   }
 
+  /* the one link off this page, to the selling discussion. Styled as a card,
+     not an inline link, so it reads as "there's more" without competing with
+     the closer, which has to stay the last word: decide Step 1. */
+  .nextcard {
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    margin: 22px 0 6px; padding: 20px 24px; text-decoration: none;
+    background: var(--card); border: 1px solid var(--line); border-radius: 13px;
+    box-shadow: var(--shadow); color: var(--ink);
+  }
+  .nextcard:hover { border-color: var(--accent); }
+  .nextcard:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  .nextcard .t { font-family: 'Fraunces', serif; font-size: 1.18rem; font-weight: 500; line-height: 1.3; }
+  .nextcard .s { font-size: 0.9rem; color: var(--ink-2); margin-top: 3px; }
+  .nextcard .go {
+    font-size: 0.86rem; font-weight: 600; color: var(--accent-deep);
+    white-space: nowrap; flex-shrink: 0;
+  }
+
   @media print {
     @page { size: Letter; margin: 0.55in 0.6in; }
 
@@ -311,6 +329,7 @@
     .pr { grid-template-columns: 1fr; gap: 10px; }
     .pr .marker { justify-self: start; }
     thead th, tbody td { padding: 11px 13px; font-size: 0.88rem; }
+    .nextcard { flex-direction: column; align-items: flex-start; gap: 10px; }
   }
 </style>
 </head>
@@ -455,9 +474,9 @@
         <h4>The plan on paper</h4>
         <p>Before anyone writes code or quotes a build, we agree in writing on exactly what's being built. Every screen, every rule, what happens in each situation, and just as importantly, what isn't included.</p>
         <ul>
-          <li>Takes about a week and a couple of working sessions with both of you</li>
-          <li>You keep the document whether or not we continue</li>
-          <li>If you take it to a different developer, it still works as a specification</li>
+          <li>Takes about a week and a couple of working sessions with you</li>
+          <li>You keep the product specification documents whether or not we continue</li>
+          <li>If you take them to a different developer, they still work as a specification</li>
           <li>Nothing after this gets a firm price until this exists, because pricing a build from a conversation is how projects go wrong</li>
         </ul>
       </div>
@@ -474,7 +493,7 @@
           <li>The page a helper sees, built to load fast on a weak signal</li>
           <li>The parent's account, with the live preview so they can see what a stranger sees</li>
           <li>Everything needed to get codes onto your first bands</li>
-          <li>I run the behind the scenes pieces by hand through your first three batches, which is why this step costs less</li>
+          <li>I run the behind the scenes pieces by hand through your first two batches, which is why this step costs less</li>
         </ul>
       </div>
 
@@ -484,7 +503,7 @@
           <span class="figures">$7,000 to $9,000 <span class="est">estimate, quoted at Step 2, signed when you're ready</span></span>
         </div>
         <h4>The tools that get me out of your way</h4>
-        <p>You don't need this on day one, and there's no aggressive date attached to it. You need it when you're ordering batches often enough that me doing it by hand becomes the thing slowing you down. That turns the work I've been doing manually into buttons the two of you press yourselves.</p>
+        <p>You don't need this on day one, and there's no aggressive date attached to it. You need it when you're ordering batches often enough that me doing it by hand becomes the thing slowing you down. That turns the work I've been doing manually into buttons you press yourselves.</p>
         <p>Not only that, I don't want to build you a partial system that operates like scaffolding. We want to be proud of this system because it's built out and it removes friction and stress from your operations. This phase puts a very large and impressive bow on the experience of the customers, and you as well.</p>
         <p><strong>By the time that's a real problem, you'll be deciding with actual numbers instead of guesses,</strong> and you'll know when the business justifies it.</p>
         <ul>
@@ -522,7 +541,8 @@
           <tr><th>Active bands in the field</th><th>Monthly</th></tr>
         </thead>
         <tbody>
-          <tr><td>Up to 500</td><td class="num">$250</td></tr>
+          <tr><td>Up to 250</td><td class="num">$125</td></tr>
+          <tr><td>251 to 500</td><td class="num">$250</td></tr>
           <tr><td>501 to 2,500</td><td class="num">$450</td></tr>
           <tr><td>2,501 to 10,000</td><td class="num">$750</td></tr>
           <tr><td>Beyond 10,000</td><td class="num">We talk</td></tr>
@@ -550,14 +570,35 @@
   </div>
 </section>
 
+<!-- ============ 06 ============ -->
+<section class="step">
+  <div class="step-head">
+    <div class="step-num">06</div>
+    <div class="step-titles">
+      <div class="step-kicker">Beyond the software</div>
+      <h2>Getting bands into parents' hands</h2>
+    </div>
+  </div>
+  <div class="step-body">
+    <p>Everything above is what happens after a parent has a band. Before that, they need a place to find FindMe and buy one. That means a web address, a store, and a plan for selling the first hundred. It's separate from the steps above, and it's something I can help with.</p>
+    <a class="nextcard" href="/engagement-4k9dq2/selling/">
+      <span>
+        <span class="t" style="display:block;">Selling the bands</span>
+        <span class="s" style="display:block;">What has to exist before the first band sells, and where I can help</span>
+      </span>
+      <span class="go">Read it &rarr;</span>
+    </a>
+  </div>
+</section>
+
 <div class="closer">
   <div class="eyebrow">Where this starts</div>
-  <p>The only thing to decide right now is Step 1. It's small, it's a week, and at the end of it you own a document that tells you exactly what you're building and what it costs. <strong>Everything after that's a decision you get to make with better information than you have today.</strong></p>
+  <p>The only thing to decide right now is Step 1. It's small, it's a week, and at the end of it you own the documents that tell you exactly what you're building and what it costs. <strong>Everything after that's a decision you get to make with better information than you have today.</strong></p>
 </div>
 
 <footer>
   <div class="brandmark"><span class="dot"><span></span></span> UpSkillPros</div>
-  <div class="asof">Prepared August 2026. Figures hold for 90 days from that date, and Steps 2 and 3 are firmed up once Step 1 is done.</div>
+  <div class="asof">Prepared November 10, 2026. Figures hold for 90 days from that date, and Steps 2 and 3 are firmed up once Step 1 is done.</div>
 </footer>
 
 </div>
